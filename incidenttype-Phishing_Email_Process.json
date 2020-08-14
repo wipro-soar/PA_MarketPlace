@@ -1,0 +1,31 @@
+{
+	"autorun": false,
+	"closureScript": "",
+	"color": "#F06292",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"disabled": false,
+	"fromServerVersion": "",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Phishing Email Process",
+	"itemVersion": "",
+	"layout": "f67f2853-0fb4-45f9-8d3f-dbfe048741e3",
+	"locked": false,
+	"name": "Phishing Email Process",
+	"packID": "",
+	"playbookId": "0cf36b35-9da0-4f27-8e34-63f43d6e7a4f",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 0,
+	"sortValues": null,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
