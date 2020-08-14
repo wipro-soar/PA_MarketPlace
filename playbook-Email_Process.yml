@@ -1,0 +1,187 @@
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 0cf36b35-9da0-4f27-8e34-63f43d6e7a4f
+inputs: []
+name: Email Process
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d927106c-e013-4d70-86d1-c8042f82f1dd
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: d927106c-e013-4d70-86d1-c8042f82f1dd
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    id: "1"
+    ignoreworker: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      entryid: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Identify whether the incident includes an email message attached
+        as an eml or msg file and return the answer to playbook. Also saves the identified
+        entry ID to context for use for later. Commonly used in automated playbooks
+        that handle phishing reports sent to a special phishing mailbox set up by
+        the security team.
+      id: 6f103e0d-13bf-4002-88db-c3da418366fd
+      iscommand: false
+      name: Is the eml file uploaded to the incident?
+      script: IdentifyAttachedEmail
+      type: condition
+      version: -1
+    taskid: 6f103e0d-13bf-4002-88db-c3da418366fd
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 200
+        }
+      }
+  "2":
+    id: "2"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      entryid:
+        simple: ${reportedemailentryid}
+      max_depth: {}
+      parse_only_headers: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Parse an email from an eml or msg file and populate all relevant
+        context data to investigate the email. Also extracts inner attachments and
+        returns them to the war room. The incident labels themselves are preserved
+        and not modified - only the "Label/x" context items that originated from the
+        labels, and the best practice is to rely on these for the remainder of the
+        playbook.
+      id: 59dda74a-a1bc-4d17-8eda-027a27e320d9
+      iscommand: false
+      name: Parse the email file
+      script: ParseEmailFiles
+      type: regular
+      version: -1
+    taskid: 59dda74a-a1bc-4d17-8eda-027a27e320d9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 370
+        }
+      }
+  "3":
+    id: "3"
+    ignoreworker: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 312b5afe-74ac-46c2-8ada-d5a0d4816bc7
+      iscommand: false
+      name: End Playbook
+      type: title
+      version: -1
+    taskid: 312b5afe-74ac-46c2-8ada-d5a0d4816bc7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 700
+        }
+      }
+  "4":
+    id: "4"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      EmailDetails:
+        simple: ${Email}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This script is designed to parse and store relevant information
+        from the process email. The !ParseEmailFiles  command must be execute first
+        and its output parsed to this script
+      id: ac402e75-2c93-4c9a-8860-75d9df7b02da
+      iscommand: false
+      name: Execute function to extract email header information
+      script: 3e867de2-2134-4fa7-8337-6dcacbe0cdce
+      type: regular
+      version: -1
+    taskid: ac402e75-2c93-4c9a-8860-75d9df7b02da
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 530
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 715,
+        "width": 640,
+        "x": 190,
+        "y": 50
+      }
+    }
+  }
