@@ -1,0 +1,178 @@
+args:
+- description: Results returned from parse email command
+  name: EmailDetails
+  required: true
+comment: This script is designed to parse and store relevant information from the
+  process email. The !ParseEmailFiles  command must be execute first and its output
+  parsed to this script
+commonfields:
+  id: 3e867de2-2134-4fa7-8337-6dcacbe0cdce
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+enabled: true
+name: Extract_Email_Details_MP
+outputs:
+- contextPath: EmailExtract.received-spf
+  type: string
+- contextPath: EmailExtract.Authentication-Results-Original
+  type: string
+- contextPath: EmailExtract.SenderDomain
+  type: string
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  #This script is designed to parse and store relevant information from the processed email.
+  ## The below information is extracted and stored in incident fields
+  #### Authentication Results
+  #### Sender From Domain
+  #### Sender Client Domain
+  #### Email Date
+  #### Email From
+  #### Email Reply To
+  #### Return Path
+  #### To
+  #### Email Subject
+  #### SPF Result
+  #### DKIM Result
+  #### Email Sender IP
+  #### SMTP From Address
+  ########################################################
+
+  SMTPFromAddress = ''
+  SenderAddressDomain = ''
+  SenderClientDomain = ''
+  SPFResult = ''
+  dmarcResult = ''
+  dkimResult = ''
+  emailFrom = ''
+  emailReplyTo = ''
+  emailTo = ''
+  emailSenderIP = ''
+  authenticationResults = ''
+
+  import re
+
+  #Get the passed parameter
+  EmailDetails = demisto.args()['EmailDetails']
+
+  for item in EmailDetails['Headers']:
+      #Extract the date
+      if item['name'] == 'Date':
+          EmailDate = item['value']
+          break
+
+  #Extract the email Subject
+  subject = demisto.get(EmailDetails,'Subject')
+
+  temp = None
+  #Get required details from the Authentication-Results headers
+  if demisto.get(EmailDetails,'HeadersMap.authentication-results'):
+      temp = demisto.get(EmailDetails,'HeadersMap.authentication-results')
+      authenticationResults = demisto.get(EmailDetails,'HeadersMap.authentication-results')
+  elif demisto.get(EmailDetails,'HeadersMap.Authentication-Results'):
+      temp = demisto.get(EmailDetails,'HeadersMap.Authentication-Results')
+      authenticationResults = demisto.get(EmailDetails,'HeadersMap.Authentication-Results')
+  elif demisto.get(EmailDetails,'HeadersMap.Authentication-Results-Original'):
+      temp = demisto.get(EmailDetails,'HeadersMap.Authentication-Results-Original')
+      authenticationResults = demisto.get(EmailDetails,'HeadersMap.Authentication-Results-Original')
+  elif demisto.get(EmailDetails,'HeadersMap.authentication-results-original'):
+      temp = demisto.get(EmailDetails,'HeadersMap.authentication-results-original')
+      authenticationResults = demisto.get(EmailDetails,'HeadersMap.authentication-results-original')
+
+  if temp:
+      #Extract the detail from authentication results
+      dkimMatch = re.search(r'dkim\=(\S+)', temp)
+      dmarcMatch = re.search(r'dmarc\=(\S+)', temp)
+      spfMatch = re.search(r'spf\=(\S+)', temp)
+      smtpMatch = re.search(r'smtp.mailfrom\=(.+?)\;', temp)
+      senderAddressDomainMatch = re.search(r'header.from\=(.+?)\;', temp)
+      senderClientDomainMatch = re.search(r'header.d\=(.+?)\s', temp)
+      # Assign DKIM Result if matched
+      if dkimMatch:
+          dkimResult = dkimMatch.group(1)
+      # Assign DMARC Result if matched
+      if dmarcMatch:
+          dmarcResult = dmarcMatch.group(1)
+      # Assign SPF Result if matched
+      if spfMatch:
+          SPFResult = spfMatch.group(1)
+      # Assign the SMTP From Address if matched
+      if smtpMatch:
+          SMTPFromAddress = smtpMatch.group(1)
+      # Assign the Sender Client Domain if matched
+      if senderClientDomainMatch:
+          SenderClientDomain = senderClientDomainMatch.group(1)
+      # Assign the Sender Domain is matched
+      if senderAddressDomainMatch:
+          SenderAddressDomain = senderAddressDomainMatch.group(1)
+      # Map the Sender IP Address
+      senderMatch = re.search(r'\(sender IP is \d+\.\d+\.\d+\.\d+\) ', temp)
+      if senderMatch:
+          emailSenderIP = senderMatch.group(1)
+      else:
+          if demisto.get(EmailDetails,'HeadersMap.X-Originating-IP'):
+              emailSenderIP = demisto.get(EmailDetails,'HeadersMap.X-Originating-IP')
+
+  # Other header mappings
+  emailFrom = demisto.get(EmailDetails,'From')
+  emailReplyTo = demisto.get(EmailDetails, 'HeadersMap.Return-Path')
+  emailTo = demisto.get(EmailDetails, 'HeadersMap.To')
+  emailSenderIP = demisto.get(EmailDetails, 'HeadersMap.x-originating-ip')
+
+  #Additional data that needs to be saved to the context
+  ec = {}
+  ec['EmailExtract'] = {
+      'Authentication Results' : authenticationResults,
+      'Sender From Domain' : SenderAddressDomain,
+      'Sender Client Domain' : SenderClientDomain,
+      'Email Date' : EmailDate,
+      'Email From' : emailFrom,
+      'Email Reply To' : emailReplyTo,
+      'Email To' : emailTo,
+      'Email Subject' : subject,
+      'SPF Result' : SPFResult,
+      'Email Sender IP' : emailSenderIP,
+      'SMTP From Address' : SMTPFromAddress,
+      'DMARC Result' : dmarcResult,
+      'DKIM Result' : dkimResult
+  }
+
+  #Data that needs to be stored in the incident fields
+  demisto.executeCommand("setIncident", {
+      'authenticationresults' : authenticationResults,
+      'senderfromdomain' : SenderAddressDomain,
+      'senderclientdomain' : SenderClientDomain,
+      'emaildate' : EmailDate,
+      'emailfrom' : emailFrom,
+      'emailreplyto' : emailReplyTo,
+      'emailto' : emailTo,
+      'emailsubject' : subject,
+      'spfresult' : SPFResult,
+      'emailsenderip' : emailSenderIP,
+      'smtpfromaddress' : SMTPFromAddress,
+      'dmarcresult' : dmarcResult,
+      'dkimresult' : dkimResult
+  })
+
+  #Push remaining data to context
+  demisto.results({
+      'Type' : entryTypes['note'],
+      'ContentsFormat' : formats['json'],
+      'Contents':  ec['EmailExtract'],
+      'EntryContext': ec,
+      'ReadableContentsFormat': formats['markdown'],
+      'HumanReadable': tableToMarkdown('Extracted Email Details', ec['EmailExtract'])
+  })
+scripttarget: 0
+subtype: python3
+tags:
+- Utility
+type: python
