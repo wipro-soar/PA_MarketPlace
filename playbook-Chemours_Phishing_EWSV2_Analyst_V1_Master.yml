@@ -5,6 +5,8 @@ contentitemexportablefields:
     packID: ""
     propagationLabels:
     - all
+    - dlp
+    - endpoint
     toServerVersion: ""
 id: 3cf699ff-d881-4c8e-8b29-e0b61cdd4eba
 inputs:
@@ -24,6 +26,7 @@ tasks:
     nexttasks:
       '#none#':
       - "34"
+      - "242"
     note: false
     quietmode: 0
     separatecontext: false
@@ -6651,6 +6654,30 @@ tasks:
         "position": {
           "x": 1687.5,
           "y": 9585
+        }
+      }
+  "242":
+    id: "242"
+    ignoreworker: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6f70942c-f2d7-4cb4-8c6b-9cd419922081
+      iscommand: false
+      name: Correct map of incident type
+      type: regular
+      version: -1
+    taskid: 6f70942c-f2d7-4cb4-8c6b-9cd419922081
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2520,
+          "y": 195
         }
       }
 version: -1
