@@ -1,0 +1,422 @@
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 174adb64-1a61-449d-81b9-d457abcf8fea
+inputs: []
+name: Temp_Playbook
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7b1d8f21-2329-4090-844d-4e004eb762d5
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 7b1d8f21-2329-4090-844d-4e004eb762d5
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    id: "1"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      cmd:
+        simple: systemctl status demisto | grep Active
+      extend-context:
+        simple: SSHOutout=output
+      system: {}
+      timeout: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: commands.server.remoteacess.ssh.description
+      id: 614d6821-de1f-41a0-87a5-eb07a46a4011
+      iscommand: true
+      name: Execute command
+      script: '|||ssh'
+      type: regular
+      version: -1
+    taskid: 614d6821-de1f-41a0-87a5-eb07a46a4011
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "2":
+    id: "2"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      contextKey: {}
+      data:
+        simple: ${SSHOutout}
+      flags: {}
+      group:
+        simple: "1"
+      regex:
+        simple: Active\:\s(\S+).+
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Extract regex data from given text - supports groups and looping
+        as well.
+      id: 59906d48-2c28-41c6-8dd6-ca462245d831
+      iscommand: false
+      name: Parse output and save to context key
+      script: MatchRegex
+      type: regular
+      version: -1
+    taskid: 59906d48-2c28-41c6-8dd6-ca462245d831
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: MatchRegex.results
+          operator: isEqualString
+          right:
+            value:
+              simple: active
+      label: Service Active
+    id: "3"
+    ignoreworker: false
+    nexttasks:
+      '#default#':
+      - "4"
+      Service Active:
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2b7cfbed-db66-4e02-8340-1c28bbd1f136
+      iscommand: false
+      name: Check the output of the service
+      type: condition
+      version: -1
+    taskid: 2b7cfbed-db66-4e02-8340-1c28bbd1f136
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 545
+        }
+      }
+  "4":
+    id: "4"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      additionalHeader: {}
+      attachCIDs: {}
+      attachIDs: {}
+      attachNames: {}
+      bcc: {}
+      body: {}
+      cc: {}
+      htmlBody:
+        simple: Hi,<br><br>Cortex XSOAR noticed a service is down. Will try to restart
+          the service.<br><br>Cortex XSOAR
+      raw_message: {}
+      replyTo: {}
+      subject:
+        simple: Service Down
+      templateParams: {}
+      to:
+        simple: jeremy.fernandes@wipro.com
+      transientFile: {}
+      transientFileCID: {}
+      transientFileContent: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Mail Sender (New)
+      description: Send an email
+      id: 9ec35b93-75df-4992-8a11-e391c9bb2eb5
+      iscommand: true
+      name: Send communication to end team
+      script: Mail Sender (New)|||send-mail
+      type: regular
+      version: -1
+    taskid: 9ec35b93-75df-4992-8a11-e391c9bb2eb5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "5":
+    id: "5"
+    ignoreworker: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 31da1058-4ae5-4481-8c3e-7e219d9e5ef1
+      iscommand: false
+      name: End Playbook
+      type: title
+      version: -1
+    taskid: 31da1058-4ae5-4481-8c3e-7e219d9e5ef1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1880
+        }
+      }
+  "6":
+    id: "6"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      cmd:
+        simple: systemctl start demisto1
+      system: {}
+      timeout: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: commands.server.remoteacess.ssh.description
+      id: ad801297-ec53-4b76-8e4a-55ac257bd57d
+      iscommand: true
+      name: Attempt restart of the service
+      script: '|||ssh'
+      type: regular
+      version: -1
+    taskid: ad801297-ec53-4b76-8e4a-55ac257bd57d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1070
+        }
+      }
+  "7":
+    id: "7"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "200"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: dce20f99-65ca-4835-8f59-6b67a1f113e8
+      iscommand: false
+      name: Wait for service to start or start fail
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: dce20f99-65ca-4835-8f59-6b67a1f113e8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1245
+        }
+      }
+  "8":
+    id: "8"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      cmd:
+        simple: systemctl status demisto | grep Active
+      extend-context:
+        simple: SSHOutout=output
+      system: {}
+      timeout: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: commands.server.remoteacess.ssh.description
+      id: 2b8906b4-082b-4b7b-846d-9b17e8e88c20
+      iscommand: true
+      name: Execute command
+      script: '|||ssh'
+      type: regular
+      version: -1
+    taskid: 2b8906b4-082b-4b7b-846d-9b17e8e88c20
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1420
+        }
+      }
+  "9":
+    id: "9"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      contextKey: {}
+      data:
+        simple: ${SSHOutout}
+      flags: {}
+      group:
+        simple: "1"
+      regex:
+        simple: Active\:\s(\S+).+
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Extract regex data from given text - supports groups and looping
+        as well.
+      id: ab2fdbf5-827e-476a-88b8-057299f83493
+      iscommand: false
+      name: Parse output and save to context key
+      script: MatchRegex
+      type: regular
+      version: -1
+    taskid: ab2fdbf5-827e-476a-88b8-057299f83493
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1595
+        }
+      }
+  "10":
+    id: "10"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+      index: {}
+      key: {}
+      keysToKeep: {}
+      subplaybook: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 579af016-c2a7-46af-802e-42cf32104589
+      iscommand: false
+      name: Sanitize context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 579af016-c2a7-46af-802e-42cf32104589
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "3_4_#default#": 0.65,
+      "3_5_Service Active": 0.9
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1895,
+        "width": 595,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
