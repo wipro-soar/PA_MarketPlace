@@ -1,0 +1,701 @@
+{
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"id": "2f300897-1189-4ede-8dd1-90ef5e74ffc4",
+	"isCommon": true,
+	"itemVersion": "",
+	"layout": [
+		{
+			"forceRange": true,
+			"h": 2,
+			"i": "8dd86b40-f9bc-11ea-a0f4-dd9d21658666",
+			"id": "8dd86b40-f9bc-11ea-a0f4-dd9d21658666",
+			"w": 4,
+			"widget": {
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "days",
+						"field": "",
+						"fromValue": 1,
+						"toValue": 0
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"fromServerVersion": "",
+				"id": "dc9e87f6-7df0-49a2-8a32-ea8e989fcebb",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-09-18T19:59:14.409604708+05:30",
+				"name": "Total Phishing Incidents (24hrs)",
+				"packID": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Total Phishing Incidents (24hrs)",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:Phishing",
+				"shouldCommit": false,
+				"size": 0,
+				"sort": null,
+				"sortValues": null,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": true,
+			"h": 2,
+			"i": "9152c4f0-f9bc-11ea-a0f4-dd9d21658666",
+			"id": "9152c4f0-f9bc-11ea-a0f4-dd9d21658666",
+			"w": 4,
+			"widget": {
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "days",
+						"field": "",
+						"fromValue": 1,
+						"toValue": 0
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"fromServerVersion": "",
+				"id": "3b620e20-a60b-4a5c-8283-7670d05d0f69",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-09-18T20:00:41.667440818+05:30",
+				"name": "Total Running Playbooks (24hrs)",
+				"packID": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Total Running Playbooks (24hrs)",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:Phishing and runStatus:running",
+				"shouldCommit": false,
+				"size": 0,
+				"sort": null,
+				"sortValues": null,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 4,
+			"y": 0
+		},
+		{
+			"forceRange": true,
+			"h": 2,
+			"i": "956ae540-f9bc-11ea-a0f4-dd9d21658666",
+			"id": "956ae540-f9bc-11ea-a0f4-dd9d21658666",
+			"w": 4,
+			"widget": {
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"fromServerVersion": "",
+				"id": "a539af45-6bb9-4534-8a52-b7e81e2b6aa1",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-09-18T20:01:26.843958989+05:30",
+				"name": "Incidents in Waiting State (24hrs)",
+				"packID": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Incidents in Waiting State (24hrs)",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:Phishing and runStatus:waiting",
+				"shouldCommit": false,
+				"size": 0,
+				"sort": null,
+				"sortValues": null,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 8,
+			"y": 0
+		},
+		{
+			"forceRange": true,
+			"h": 2,
+			"i": "9e099f20-f9bc-11ea-a0f4-dd9d21658666",
+			"id": "9e099f20-f9bc-11ea-a0f4-dd9d21658666",
+			"w": 4,
+			"widget": {
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "days",
+						"field": "",
+						"fromValue": 1,
+						"toValue": 0
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"fromServerVersion": "",
+				"id": "2a42e533-78c7-4b6a-83ea-ac2517e4819e",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-09-18T20:04:25.852153772+05:30",
+				"name": "SIC Queue (24hrs)",
+				"packID": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "SIC Queue (24hrs)",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:Phishing and -role:Administrator and -role:Chemours",
+				"shouldCommit": false,
+				"size": 0,
+				"sort": null,
+				"sortValues": null,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 0,
+			"y": 2
+		},
+		{
+			"forceRange": true,
+			"h": 2,
+			"i": "a4c12270-f9bc-11ea-a0f4-dd9d21658666",
+			"id": "a4c12270-f9bc-11ea-a0f4-dd9d21658666",
+			"w": 4,
+			"widget": {
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "days",
+						"field": "",
+						"fromValue": 1,
+						"toValue": 0
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"fromServerVersion": "",
+				"id": "15d205b7-be5f-4a2a-8772-fb2859de8e87",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-09-18T20:05:02.73040607+05:30",
+				"name": "QA Queue (24hrs)",
+				"packID": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "QA Queue (24hrs)",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:Phishing and owner:Akshay",
+				"shouldCommit": false,
+				"size": 0,
+				"sort": null,
+				"sortValues": null,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 4,
+			"y": 2
+		},
+		{
+			"forceRange": true,
+			"h": 2,
+			"i": "aa13be90-f9bc-11ea-a0f4-dd9d21658666",
+			"id": "aa13be90-f9bc-11ea-a0f4-dd9d21658666",
+			"w": 4,
+			"widget": {
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "days",
+						"field": "",
+						"fromValue": 1,
+						"toValue": 0
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"fromServerVersion": "",
+				"id": "4e16e228-146a-4c6a-8bfc-cec4ff21b258",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-09-18T20:05:37.565065853+05:30",
+				"name": "Chemours Queue (24hrs)",
+				"packID": "",
+				"params": {
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Chemours Queue (24hrs)",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:Phishing and role:Chemours",
+				"shouldCommit": false,
+				"size": 0,
+				"sort": null,
+				"sortValues": null,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "number"
+			},
+			"x": 8,
+			"y": 2
+		}
+	],
+	"locked": false,
+	"name": "Chemours Phishing Stats",
+	"owner": "",
+	"packID": "",
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 7,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"shared": false,
+	"sortValues": null,
+	"system": false,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
