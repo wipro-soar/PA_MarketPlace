@@ -1,0 +1,190 @@
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: e22a1caa-5095-4abd-85f7-a469a9ea1dca
+inputs: []
+name: ProofPoint_Alerts
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a42794b1-d37b-41dc-881e-bef826b6f6d3
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: a42794b1-d37b-41dc-881e-bef826b6f6d3
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    id: "1"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: Hello
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 3df32fd8-478e-4661-8382-70731b612af5
+      iscommand: false
+      name: Print hello
+      script: Print
+      type: regular
+      version: -1
+    taskid: 3df32fd8-478e-4661-8382-70731b612af5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 180
+        }
+      }
+  "2":
+    id: "2"
+    ignoreworker: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      attributes: {}
+      custom-field-data: {}
+      custom-field-type: {}
+      dn: {}
+      email:
+        simple: jeremy.fernandes@wipro.com
+      limit: {}
+      name: {}
+      user-account-control-out: {}
+      username: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Active Directory Query v2
+      description: Retrieves detailed information about a user account. The user can
+        be specified by name, email address, or as an Active Directory Distinguished
+        Name (DN). If no filter is specified, all users are returned.
+      id: 925c8b2c-57f9-4896-8cd0-cf547de515c7
+      iscommand: true
+      name: Store username and IP in the context
+      script: Active Directory Query v2|||ad-get-user
+      type: regular
+      version: -1
+    taskid: 925c8b2c-57f9-4896-8cd0-cf547de515c7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 550
+        }
+      }
+  "3":
+    id: "3"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 94870f4d-f0a7-4a23-8895-6fe6868d3184
+      iscommand: false
+      name: Untitled Task
+      type: regular
+      version: -1
+    taskid: 94870f4d-f0a7-4a23-8895-6fe6868d3184
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 370
+        }
+      }
+  "4":
+    id: "4"
+    ignoreworker: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      attributes: {}
+      custom-field-data: {}
+      custom-field-type: {}
+      dn: {}
+      email:
+        simple: jeremy.fernandes@wipro.com
+      limit: {}
+      name: {}
+      user-account-control-out: {}
+      username: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Active Directory Query v2
+      description: Retrieves detailed information about a user account. The user can
+        be specified by name, email address, or as an Active Directory Distinguished
+        Name (DN). If no filter is specified, all users are returned.
+      id: 7a84e21c-10f9-4aff-8749-121f50a0a620
+      iscommand: true
+      name: Store username and IP in the context
+      script: Active Directory Query v2|||ad-get-user
+      type: regular
+      version: -1
+    taskid: 7a84e21c-10f9-4aff-8749-121f50a0a620
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 360
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 595,
+        "width": 850,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
