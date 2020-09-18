@@ -1,0 +1,318 @@
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 17f81e7b-dfa3-4a92-8689-494402f64f73
+inputs: []
+name: Demo_Playbook_1
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 06bfde8e-b9cf-4c76-8dd5-b666c0aa0424
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 06bfde8e-b9cf-4c76-8dd5-b666c0aa0424
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    id: "1"
+    ignoreworker: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      File:
+        complex:
+          root: File
+      Interval:
+        simple: "1"
+      Timeout:
+        simple: "15"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6445f70f-79c8-4b7c-8aec-aa8078a1df7a
+      iscommand: false
+      name: Playbook Tasks
+      playbookId: ATD - Detonate File
+      type: playbook
+      version: -1
+    taskid: 6445f70f-79c8-4b7c-8aec-aa8078a1df7a
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1000,
+          "y": 760
+        }
+      }
+  "2":
+    id: "2"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2dcbf7c5-b49e-4c99-851b-321271396824
+      iscommand: false
+      name: Manual Task
+      type: regular
+      version: -1
+    taskid: 2dcbf7c5-b49e-4c99-851b-321271396824
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": 980
+        }
+      }
+  "3":
+    id: "3"
+    ignoreworker: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      long: {}
+      retries: {}
+      sampleSize: {}
+      submitWait: {}
+      threshold: {}
+      url:
+        simple: www.google.com
+      wait: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check URL Reputation
+      id: 3b28a3b9-ca7d-4fd9-8fd1-08533bf6f963
+      iscommand: true
+      name: Check for URL Reputation
+      script: '|||url'
+      type: regular
+      version: -1
+    taskid: 3b28a3b9-ca7d-4fd9-8fd1-08533bf6f963
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 185
+        }
+      }
+  "4":
+    id: "4"
+    ignoreworker: false
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      includeManual: {}
+      includeSuspicious: {}
+      maliciousQueryOverride: {}
+      queryIndicators: {}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the investigation found any malicious indicators (file,
+        URL, IP address, domain, or email). Returns "yes" if at least one malicious
+        indicator is found.
+      id: 401ee8bd-926e-4e16-81e8-860fc96d3a91
+      iscommand: false
+      name: Any malicious indicators found?
+      script: IsMaliciousIndicatorFound
+      type: condition
+      version: -1
+    taskid: 401ee8bd-926e-4e16-81e8-860fc96d3a91
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 370
+        }
+      }
+  "5":
+    id: "5"
+    ignoreworker: false
+    nexttasks:
+      I Agree:
+      - "1"
+      I do not agree:
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check URL Reputation
+      id: 482ccd35-b797-492f-89f3-a4b437670c84
+      iscommand: false
+      name: Do you agree?
+      type: condition
+      version: -1
+    taskid: 482ccd35-b797-492f-89f3-a4b437670c84
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 680,
+          "y": 570
+        }
+      }
+  "6":
+    form:
+      description: ""
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: aasdas
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: asdasd
+      totalanswers: 0
+    id: "6"
+    ignoreworker: false
+    message:
+      bcc: null
+      body: {}
+      cc: null
+      format: ""
+      methods:
+      - email
+      subject:
+        simple: asdas
+      timings:
+        completeafterreplies: 1
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: Analyst
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check URL Reputation
+      id: 98dcab8f-ea6a-4bbd-8fc6-61cd9fcaf27c
+      iscommand: false
+      name: Let me know why?
+      type: collection
+      version: -1
+    taskid: 98dcab8f-ea6a-4bbd-8fc6-61cd9fcaf27c
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 760
+        }
+      }
+  "7":
+    id: "7"
+    ignoreworker: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check URL Reputation
+      id: a60d7a96-3d20-4798-8c16-45cfc73b6e3c
+      iscommand: false
+      name: Section Header
+      type: title
+      version: -1
+    taskid: a60d7a96-3d20-4798-8c16-45cfc73b6e3c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 310,
+          "y": 1200
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "5_6_I do not agree": 0.66
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1215,
+        "width": 1070,
+        "x": 310,
+        "y": 50
+      }
+    }
+  }
