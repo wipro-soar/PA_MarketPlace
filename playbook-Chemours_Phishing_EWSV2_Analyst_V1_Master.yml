@@ -6,6 +6,7 @@ contentitemexportablefields:
     propagationLabels:
     - all
     toServerVersion: ""
+description: asdasd
 id: 3cf699ff-d881-4c8e-8b29-e0b61cdd4eba
 inputs:
 - description: ""
